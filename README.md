@@ -14,6 +14,7 @@ Home Assistant integration that adds **scheduled, presence-aware auto-updates** 
 - Entities: per-container *update available* binary sensor, *Pending updates*, *Next auto-update*, *Last update run* sensors, an *Auto-update* master switch, *Check for updates* and *Force auto-update* buttons (runs the auto-update immediately for non-excluded containers only; excluded ones are never touched).
 - Event `dockhand_advanced_updater_run_finished` (`reason`, `updated`, `failed`, `finished`) – use it for notifications.
 - Full UI configuration (config flow, options flow, re-auth) in English and Polish.
+- Pressing a button shows a persistent notification (started / finished with result); repeated presses while a run is in progress are rejected.
 
 ## Example dashboard
 

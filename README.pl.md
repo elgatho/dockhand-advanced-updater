@@ -14,6 +14,7 @@ Integracja Home Assistant dodająca **zaplanowane autoaktualizacje z uwzględnie
 - Encje: sensor binarny „dostępna aktualizacja" dla każdego kontenera, sensory *Oczekujące aktualizacje*, *Następna autoaktualizacja*, *Ostatnie uruchomienie*, przełącznik *Autoaktualizacja*, przyciski *Sprawdź aktualizacje* i *Wymuś autoaktualizację* (uruchamia autoaktualizację od razu, tylko dla kontenerów niewykluczonych; wykluczone nigdy nie są ruszane).
 - Zdarzenie `dockhand_advanced_updater_run_finished` (`reason`, `updated`, `failed`, `finished`) – do powiadomień.
 - Pełna konfiguracja z UI (config flow, opcje, ponowne uwierzytelnienie) po polsku i angielsku.
+- Naciśnięcie przycisku wyświetla powiadomienie (start / koniec z wynikiem); kolejne naciśnięcia w trakcie aktualizacji są odrzucane.
 
 ## Przykładowy dashboard
 

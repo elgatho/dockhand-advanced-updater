@@ -98,6 +98,11 @@ class DockhandCoordinator(DataUpdateCoordinator[dict[str, ContainerInfo]]):
         return {**DEFAULT_OPTIONS, **entry.options}
 
     @property
+    def busy(self) -> bool:
+        """True while an update run holds the lock."""
+        return self._lock.locked()
+
+    @property
     def options(self) -> dict[str, Any]:
         return self.options_of(self.config_entry)
 
