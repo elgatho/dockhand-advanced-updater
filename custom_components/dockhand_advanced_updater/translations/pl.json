@@ -1,0 +1,120 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Połącz z Dockhand",
+        "description": "Podaj adres swojej instancji Dockhand. Token API utworzysz w Dockhand (profil → tokeny API); zostaw puste tylko, jeśli uwierzytelnianie jest wyłączone.",
+        "data": {
+          "url": "Adres URL Dockhand",
+          "token": "Token API",
+          "verify_ssl": "Weryfikuj certyfikat SSL"
+        },
+        "data_description": {
+          "url": "np. http://192.168.1.10:3000",
+          "token": "Token zaczynający się od dh_"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ponowne uwierzytelnienie",
+        "description": "Token API jest już nieważny. Podaj nowy.",
+        "data": {
+          "token": "Token API"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie można połączyć się z Dockhand.",
+      "invalid_auth": "Nieprawidłowy lub brakujący token API.",
+      "unknown": "Nieoczekiwany błąd."
+    },
+    "abort": {
+      "already_configured": "Ta instancja Dockhand jest już skonfigurowana.",
+      "reauth_successful": "Ponowne uwierzytelnienie zakończone powodzeniem."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Harmonogram autoaktualizacji",
+        "description": "Kontenery niewykluczone, dla których jest dostępna aktualizacja, zostaną zaktualizowane o wybranej godzinie w wybrane dni. W następnym kroku wybierzesz kontenery wykluczone.",
+        "data": {
+          "environments": "Środowiska",
+          "update_time": "Godzina aktualizacji",
+          "update_days": "Dni aktualizacji",
+          "only_when_home": "Tylko gdy ktoś jest w domu",
+          "persons": "Osoby",
+          "check_before_update": "Sprawdź aktualizacje przed uruchomieniem",
+          "scan_interval": "Interwał odświeżania"
+        },
+        "data_description": {
+          "environments": "Zostaw puste, aby monitorować wszystkie środowiska.",
+          "only_when_home": "Jeśli o zaplanowanej godzinie nikogo nie ma w domu, aktualizacja uruchomi się po powrocie wybranej osoby (tego samego dnia).",
+          "persons": "Aktualizacja ruszy tylko, gdy w domu jest co najmniej jedna z tych osób.",
+          "check_before_update": "Poproś Dockhand o świeże sprawdzenie obrazów tuż przed aktualizacją.",
+          "scan_interval": "Jak często odpytywać Dockhand (minuty)."
+        }
+      },
+      "containers": {
+        "title": "Kontenery wykluczone",
+        "description": "Wybrane kontenery nigdy nie będą aktualizowane automatycznie. Zamiast tego dostaną przycisk ręcznej aktualizacji.",
+        "data": {
+          "excluded": "Wykluczone z autoaktualizacji"
+        },
+        "data_description": {
+          "excluded": "Pozycje oznaczone ⚠ nie są obecnie zgłaszane przez Dockhand."
+        }
+      }
+    },
+    "error": {
+      "days_required": "Wybierz co najmniej jeden dzień.",
+      "persons_required": "Wybierz co najmniej jedną osobę."
+    }
+  },
+  "selector": {
+    "weekdays": {
+      "options": {
+        "mon": "Poniedziałek",
+        "tue": "Wtorek",
+        "wed": "Środa",
+        "thu": "Czwartek",
+        "fri": "Piątek",
+        "sat": "Sobota",
+        "sun": "Niedziela"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "update_available": {
+        "name": "{container} – dostępna aktualizacja"
+      }
+    },
+    "button": {
+      "update_container": {
+        "name": "Aktualizuj {container}"
+      },
+      "check_updates": {
+        "name": "Sprawdź aktualizacje"
+      },
+      "update_all": {
+        "name": "Aktualizuj wszystko teraz"
+      }
+    },
+    "switch": {
+      "auto_update": {
+        "name": "Autoaktualizacja"
+      }
+    },
+    "sensor": {
+      "pending_updates": {
+        "name": "Oczekujące aktualizacje"
+      },
+      "next_run": {
+        "name": "Następna autoaktualizacja"
+      },
+      "last_run": {
+        "name": "Ostatnie uruchomienie aktualizacji"
+      }
+    }
+  }
+}

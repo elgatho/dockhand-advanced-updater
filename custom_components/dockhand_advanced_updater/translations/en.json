@@ -1,0 +1,120 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Dockhand",
+        "description": "Enter the address of your Dockhand instance. Create an API token in Dockhand (profile → API tokens); leave empty only if authentication is disabled.",
+        "data": {
+          "url": "Dockhand URL",
+          "token": "API token",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "e.g. http://192.168.1.10:3000",
+          "token": "Token starting with dh_"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate",
+        "description": "The API token is no longer valid. Enter a new one.",
+        "data": {
+          "token": "API token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to Dockhand.",
+      "invalid_auth": "Invalid or missing API token.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This Dockhand instance is already configured.",
+      "reauth_successful": "Re-authentication successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Auto-update schedule",
+        "description": "Non-excluded containers with an available update are updated at the chosen time on the chosen days. The next step lets you pick excluded containers.",
+        "data": {
+          "environments": "Environments",
+          "update_time": "Update time",
+          "update_days": "Update days",
+          "only_when_home": "Only when someone is home",
+          "persons": "People",
+          "check_before_update": "Check for updates before updating",
+          "scan_interval": "Refresh interval"
+        },
+        "data_description": {
+          "environments": "Leave empty to monitor all environments.",
+          "only_when_home": "If nobody is home at the scheduled time, the update runs when a selected person arrives (same day).",
+          "persons": "Update runs only if at least one of them is home.",
+          "check_before_update": "Ask Dockhand to run a fresh image check right before the update.",
+          "scan_interval": "How often to poll Dockhand (minutes)."
+        }
+      },
+      "containers": {
+        "title": "Excluded containers",
+        "description": "Selected containers are never updated automatically. They get a manual “Update” button instead.",
+        "data": {
+          "excluded": "Excluded from auto-update"
+        },
+        "data_description": {
+          "excluded": "Entries marked ⚠ are not currently reported by Dockhand."
+        }
+      }
+    },
+    "error": {
+      "days_required": "Select at least one day.",
+      "persons_required": "Select at least one person."
+    }
+  },
+  "selector": {
+    "weekdays": {
+      "options": {
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday",
+        "sun": "Sunday"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "update_available": {
+        "name": "{container} update available"
+      }
+    },
+    "button": {
+      "update_container": {
+        "name": "Update {container}"
+      },
+      "check_updates": {
+        "name": "Check for updates"
+      },
+      "update_all": {
+        "name": "Update all now"
+      }
+    },
+    "switch": {
+      "auto_update": {
+        "name": "Auto-update"
+      }
+    },
+    "sensor": {
+      "pending_updates": {
+        "name": "Pending updates"
+      },
+      "next_run": {
+        "name": "Next auto-update"
+      },
+      "last_run": {
+        "name": "Last update run"
+      }
+    }
+  }
+}

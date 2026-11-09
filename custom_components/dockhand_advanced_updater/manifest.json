@@ -1,0 +1,12 @@
+{
+  "domain": "dockhand_advanced_updater",
+  "name": "Dockhand Advanced Updater",
+  "codeowners": ["@elgatho"],
+  "config_flow": true,
+  "documentation": "https://github.com/elgatho/dockhand-advanced-updater",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/elgatho/dockhand-advanced-updater/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
