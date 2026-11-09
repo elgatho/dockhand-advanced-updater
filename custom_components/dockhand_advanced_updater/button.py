@@ -22,7 +22,7 @@ async def async_setup_entry(
     coordinator = entry.runtime_data
 
     async_add_entities(
-        [CheckUpdatesButton(coordinator, "check_updates"), UpdateAllButton(coordinator, "update_all")]
+        [CheckUpdatesButton(coordinator, "check_updates"), RunAutoUpdateButton(coordinator, "run_auto_update")]
     )
 
     # Drop buttons of containers that are no longer excluded.
@@ -48,12 +48,17 @@ class UpdateContainerButton(DockhandContainerEntity, ButtonEntity):
     async def async_press(self) -> None:
         await self.coordinator.async_update_container(self._key)
 
+    @property
+    def extra_state_attributes(self) -> dict[str, str]:
+        c = self.container
+        return {} if c is None else {"container": c.name, "environment": c.env_name}
+
 
 class CheckUpdatesButton(DockhandHubEntity, ButtonEntity):
     async def async_press(self) -> None:
         await self.coordinator.async_check_updates()
 
 
-class UpdateAllButton(DockhandHubEntity, ButtonEntity):
+class RunAutoUpdateButton(DockhandHubEntity, ButtonEntity):
     async def async_press(self) -> None:
         await self.coordinator.async_run_auto_update("manual")

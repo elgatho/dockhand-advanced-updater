@@ -1,0 +1,59 @@
+# Dockhand Advanced Updater - example dashboard card.
+#
+# Requires "auto-entities" (HACS frontend card) for the two dynamic lists.
+# Replace the 5 entity IDs in the first card with your own (they depend on the
+# name of your Dockhand device and on your HA language). The two lists work
+# without editing: they find the integration's entities automatically.
+#
+# Paste into a dashboard: Edit -> Add card -> Manual (or raw configuration editor).
+type: vertical-stack
+cards:
+  - type: entities
+    title: Dockhand
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - entity: switch.dockhand_auto_update              # master switch
+      - entity: sensor.dockhand_pending_updates
+      - entity: sensor.dockhand_next_auto_update
+      - entity: sensor.dockhand_last_update_run
+      - entity: button.dockhand_check_for_updates
+      - entity: button.dockhand_force_auto_update        # runs auto-update now (non-excluded only)
+
+  # Containers with an update waiting (hidden when there are none).
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Available updates
+      show_header_toggle: false
+    filter:
+      template: >-
+        {% set ns = namespace(l=[]) %}
+        {% for e in integration_entities('dockhand_advanced_updater')
+           if e.startswith('binary_sensor.') and is_state(e, 'on') %}
+          {% set ns.l = ns.l + [{
+            'type': 'text',
+            'name': state_attr(e, 'container') ~ ' (' ~ state_attr(e, 'environment') ~ ')',
+            'text': 'new version',
+            'icon': 'mdi:package-up'}] %}
+        {% endfor %}
+        {{ ns.l | tojson }}
+
+  # Manual update buttons for containers excluded from auto-update.
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Manual update (excluded)
+      show_header_toggle: false
+    filter:
+      template: >-
+        {% set ns = namespace(l=[]) %}
+        {% for e in integration_entities('dockhand_advanced_updater')
+           if e.startswith('button.') and state_attr(e, 'container') %}
+          {% set ns.l = ns.l + [{
+            'entity': e,
+            'name': state_attr(e, 'container') ~ ' (' ~ state_attr(e, 'environment') ~ ')'}] %}
+        {% endfor %}
+        {{ ns.l | tojson }}

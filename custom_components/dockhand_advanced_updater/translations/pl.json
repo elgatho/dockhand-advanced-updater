@@ -96,8 +96,8 @@
       "check_updates": {
         "name": "Sprawdź aktualizacje"
       },
-      "update_all": {
-        "name": "Aktualizuj wszystko teraz"
+      "run_auto_update": {
+        "name": "Wymuś autoaktualizację"
       }
     },
     "switch": {

@@ -11,9 +11,13 @@ Home Assistant integration that adds **scheduled, presence-aware auto-updates** 
 - Auto-update at a chosen **time** on chosen **days of the week**: every non-excluded container with an available image update is updated.
 - Optional **"only when someone is home"** with a choice of `person` entities. If nobody is home at the scheduled time, the run is deferred and starts when a selected person arrives (same day).
 - Respects Dockhand's *minimum release age* (containers still in the waiting period are skipped).
-- Entities: per-container *update available* binary sensor, *Pending updates*, *Next auto-update*, *Last update run* sensors, an *Auto-update* master switch, *Check for updates* and *Update all now* buttons.
+- Entities: per-container *update available* binary sensor, *Pending updates*, *Next auto-update*, *Last update run* sensors, an *Auto-update* master switch, *Check for updates* and *Force auto-update* buttons (runs the auto-update immediately for non-excluded containers only; excluded ones are never touched).
 - Event `dockhand_advanced_updater_run_finished` (`reason`, `updated`, `failed`, `finished`) – use it for notifications.
 - Full UI configuration (config flow, options flow, re-auth) in English and Polish.
+
+## Example dashboard
+
+A ready-to-paste card with status, pending updates and manual-update buttons is in [`examples/dashboard.yaml`](examples/dashboard.yaml). It needs the [auto-entities](https://github.com/thomasloven/lovelace-auto-entities) card; the two lists fill themselves, only the five status entity IDs at the top need to match yours.
 
 ## Installation
 
